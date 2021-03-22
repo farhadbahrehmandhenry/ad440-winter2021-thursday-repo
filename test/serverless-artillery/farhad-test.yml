@@ -9,7 +9,7 @@ config:
 scenarios:
   - flow:
     - get:
-      url: "/users/2/tasks"
+      url: "/users"
       json:
       afterResponse: "logResponse"
       capture:
