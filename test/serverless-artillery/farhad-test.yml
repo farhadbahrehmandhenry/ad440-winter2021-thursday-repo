@@ -1,0 +1,17 @@
+# You can find great documentation of the possibilities at:
+# https://artillery.io/docs/
+config:
+  target: "http://localhost:7071/api"
+  phases:
+    - duration: 300
+      arrivalRate: 40
+      name: "users tasks"
+scenarios:
+  - flow:
+    - get:
+      url: "/users/2/tasks"
+      json:
+      afterResponse: "logResponse"
+      capture:
+        json: "$.tasks"
+        as: "tasks"
