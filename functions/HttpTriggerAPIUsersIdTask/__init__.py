@@ -6,7 +6,7 @@ import azure.functions as func
 import datetime
 import redis 
 
-redisFeature = "On" == os.environ["CACHE_TOGGLE"]
+redisFeature = os.environ["CACHE_TOGGLE"]
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info(
@@ -29,7 +29,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         logging.debug("Error: " + e.args[1])
         return func.HttpResponse(status_code=500)
     logging.debug("Connected to DB successfuly!")
-
+    rDB = None
 
     #Redis Sever
 
