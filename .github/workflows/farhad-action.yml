@@ -1,4 +1,4 @@
-name: serverless artillery test users
+name: serverless tasks
 on:
   push:
     branches:
@@ -28,7 +28,10 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           aws-region: "us-west-2"
       - name: installing serverless-artillery
-        run: npm install -g serverless@1.38.0 serverless-artillery
+        # run: npm install -g serverless@1.38.0 serverless-artillery
+        run: |
+          npm install -g serverless
+          npm install -g serverless-artillery
       - name: deploy, invoke, remove
         run: |
           ~/.npm-global/bin/slsart deploy --stage $STAGE_NAME --region $AWS_SLSART_REGION
